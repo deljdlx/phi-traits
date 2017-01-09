@@ -1,0 +1,14 @@
+{
+	"name": "phi-traits",
+	"description": "Usefull traits",
+	"autoload": {
+		"psr-4": {
+			"Phi\\Traits": "source/class/Traits"
+		},
+		"files": [
+
+		]
+	}
+}
+
+
