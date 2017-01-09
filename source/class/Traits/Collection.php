@@ -13,9 +13,6 @@ Trait Collection
 	protected $variableCollection=array();
 
 
-
-
-z
 	public function setVariable($name, $value) {
 		$this->variableCollection[$name]=$value;
 		return $this;
