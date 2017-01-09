@@ -2,9 +2,6 @@
 namespace Phi\Traits;
 
 
-use Phi\Cache\Blackhole;
-use Phi\Interfaces\CacheDriver;
-
 
 Trait Collection
 {
