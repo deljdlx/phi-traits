@@ -3,7 +3,7 @@
 	"description": "Usefull traits",
 	"autoload": {
 		"psr-4": {
-			"Phi\\Traits\\": "source/class/Traits"
+			"Phi\\Traits\\": "source/class"
 		},
 		"files": [
 
