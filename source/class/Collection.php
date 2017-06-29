@@ -7,7 +7,7 @@ Trait Collection
 {
 
 
-	protected $variableCollection=array();
+	private $variableCollection=array();
 
 
 	public function setVariable($name, $value) {

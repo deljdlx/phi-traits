@@ -6,7 +6,7 @@ Trait Introspectable
 {
 
 
-    protected $introspectionReflector=null;
+    private $introspectionReflector=null;
 
 
     protected function initializeReflector() {
