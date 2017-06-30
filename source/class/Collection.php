@@ -6,19 +6,18 @@ namespace Phi\Traits;
 Trait Collection
 {
 
-
-	private $variableCollection=array();
+    use ArrayAccess;
 
 
 	public function setVariable($name, $value) {
-		$this->variableCollection[$name]=$value;
+		$this->arrayAccessValues[$name]=$value;
 		return $this;
 	}
 
 
 	public function getVariable($name) {
-		if(isset($this->variableCollection[$name])) {
-			return $this->variableCollection[$name];
+		if(isset($this->arrayAccessValues[$name])) {
+			return $this->arrayAccessValues[$name];
 		}
 		else {
 			return null;
@@ -27,7 +26,7 @@ Trait Collection
 
 
 	public function getVariables() {
-		return $this->variableCollection;
+		return $this->arrayAccessValues;
 	}
 
 
