@@ -34,7 +34,6 @@ Trait Collection
 		foreach ($values as $name=>$value) {
 			$this->setVariable($name, $value);
 		}
-
 		return $this;
 	}
 
