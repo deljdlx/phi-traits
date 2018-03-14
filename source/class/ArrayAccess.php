@@ -2,10 +2,12 @@
 namespace Phi\Traits;
 
 
+use Phi\Core\Exception;
+
 Trait ArrayAccess
 {
 
-    protected $arrayAccessValues = [];
+    private $arrayAccessValues = [];
 
     public function offsetExists($offset)
     {
@@ -14,7 +16,14 @@ Trait ArrayAccess
 
     public function offsetGet($offset)
     {
-        return $this->arrayAccessValues[$offset];
+        if(array_key_exists($offset, $this->arrayAccessValues)) {
+            return $this->arrayAccessValues[$offset];
+        }
+        else {
+            throw new Exception('Key ['.$offset.'] does not exists');
+            return null;
+        }
+
     }
 
     public function offsetSet($offset, $value)
@@ -33,6 +42,11 @@ Trait ArrayAccess
     {
         unset($this->arrayAccessValues[$offset]);
         return $this;
+    }
+
+    public function getAll()
+    {
+        return $this->arrayAccessValues;
     }
 
 

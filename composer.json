@@ -1,6 +1,16 @@
 {
 	"name": "phi-traits",
 	"description": "Usefull traits",
+
+	"repositories": [
+		{"type": "vcs", "url": "https://github.com/ElBiniou/phi-core"}
+	],
+
+	"require":
+	{
+		"phi-core": "dev-master"
+	},
+
 	"autoload": {
 		"psr-4": {
 			"Phi\\Traits\\": "source/class"
