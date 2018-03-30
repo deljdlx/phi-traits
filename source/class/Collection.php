@@ -15,6 +15,19 @@ Trait Collection
 	}
 
 
+
+    public function push($value)
+    {
+        $this->offsetSet(null, $value);
+        return $this;
+    }
+
+    public function addVariable($value)
+    {
+        return $this->push($value);
+    }
+
+
 	public function getVariable($name) {
 	    return $this->offsetGet($name);
 	}
