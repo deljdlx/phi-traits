@@ -9,9 +9,18 @@ Trait ArrayAccess
 
     private $arrayAccessValues = [];
 
+
+
+
+    public function length()
+    {
+        return count($this->arrayAccessValues);
+    }
+
+
     public function offsetExists($offset)
     {
-        return array_key_exists($this->arrayAccessValues, $offset);
+        return array_key_exists($offset, $this->arrayAccessValues);
     }
 
     public function offsetGet($offset)
@@ -28,8 +37,10 @@ Trait ArrayAccess
 
     public function offsetSet($offset, $value)
     {
+
         if ($offset === null) {
             $this->arrayAccessValues[] = $value;
+
         } else {
             $this->arrayAccessValues[$offset] = $value;
         }
@@ -40,11 +51,19 @@ Trait ArrayAccess
 
     public function offsetUnset($offset)
     {
-        unset($this->arrayAccessValues[$offset]);
+        if(array_key_exists($offset, $this->arrayAccessValues)) {
+            unset($this->arrayAccessValues[$offset]);
+        }
+
         return $this;
     }
 
     public function getAll()
+    {
+        return $this->arrayAccessValues;
+    }
+
+    public function getValues()
     {
         return $this->arrayAccessValues;
     }

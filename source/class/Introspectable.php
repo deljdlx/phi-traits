@@ -7,6 +7,7 @@ Trait Introspectable
 
 
     private $introspectionReflector=null;
+    private $parentClasses = null;
 
 
     protected function initializeReflector() {
@@ -16,8 +17,11 @@ Trait Introspectable
         return $this;
     }
 
-    public function getClassBaseName() {
-        return basename(str_replace('\\', '/', get_class($this)));
+    public function getClassBaseName($className = null) {
+        if($className === null) {
+            $className = get_class($this);
+        }
+        return basename(str_replace('\\', '/', $className));
     }
 
     public function getDefinitionFile() {
@@ -27,6 +31,34 @@ Trait Introspectable
 
     public function getDefinitionFolder() {
         return dirname($this->getDefinitionFile());
+    }
+
+    public function getParentClasses()
+    {
+        if(!$this->parentClasses) {
+            $this->parentClasses = [];
+            $instance = $this;
+
+            while($parent = get_parent_class($instance)) {
+                $this->parentClasses[] = $parent;
+                $instance = $parent;
+            }
+        }
+        return $this->parentClasses;
+    }
+
+
+    public function hasTrait($traitName)
+    {
+        $traits = class_uses($this);
+        foreach ($traits as $trait) {
+            if($traitName == $trait) {
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
 

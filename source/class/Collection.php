@@ -9,11 +9,6 @@ Trait Collection
     use ArrayAccess;
 
 
-	public function setVariable($name, $value) {
-		$this->offsetSet($name, $value);
-		return $this;
-	}
-
 
 
     public function push($value)
@@ -38,12 +33,34 @@ Trait Collection
 	}
 
 
-	public function setVariables(array $values) {
-		foreach ($values as $name=>$value) {
-			$this->setVariable($name, $value);
-		}
+	public function setVariables(array &$values, $byReference = false) {
+
+        foreach ($values as $name => &$value) {
+            $this->setVariable($name, $value);
+        }
+
 		return $this;
 	}
+
+
+    public function setVariable($name, $value) {
+        $this->offsetSet($name, $value);
+        return $this;
+    }
+
+    public function setVariableByReference($name, &$value)
+    {
+        $this->offsetSet($name, $value);
+        return $this;
+    }
+
+
+
+
+	public function variableExists($variableName)
+    {
+        return $this->offsetExists($variableName);
+    }
 
 
 
