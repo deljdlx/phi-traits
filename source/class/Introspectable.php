@@ -17,6 +17,13 @@ Trait Introspectable
         return $this;
     }
 
+
+    public function getNamespaceName()
+    {
+        return $this->introspectionReflector->getNamespaceName();
+    }
+
+
     public function getClassBaseName($className = null) {
         if($className === null) {
             $className = get_class($this);
