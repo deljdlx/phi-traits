@@ -57,15 +57,31 @@ Trait Introspectable
 
     public function hasTrait($traitName)
     {
-        $traits = class_uses($this);
+        $traits = getTraits($this);
         foreach ($traits as $trait) {
             if($traitName == $trait) {
                 return true;
             }
         }
-
         return false;
+    }
 
+    public function getTraits()
+    {
+        $traits = class_uses($this);
+
+        $parentClasses = $this->getParentClasses();
+
+        foreach ($parentClasses as $parentClass) {
+            $traits = array_merge(
+                $traits,
+                class_uses($parentClass)
+            );
+        }
+
+        $traits = array_unique($traits);
+
+        return  $traits;
     }
 
 
