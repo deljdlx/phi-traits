@@ -17,6 +17,11 @@ Trait ArrayAccess
         return count($this->arrayAccessValues);
     }
 
+    public function toArray()
+    {
+        return $this->arrayAccessValues;
+    }
+
 
     public function offsetExists($offset)
     {
