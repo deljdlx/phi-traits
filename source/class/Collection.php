@@ -36,9 +36,13 @@ Trait Collection
 	public function setVariables(array &$values, $byReference = false) {
 
         foreach ($values as $name => &$value) {
-            $this->setVariable($name, $value);
+            if($byReference) {
+                $this->setVariableByReference($name, $value);
+            }
+            else {
+                $this->setVariable($name, $value);
+            }
         }
-
 		return $this;
 	}
 
