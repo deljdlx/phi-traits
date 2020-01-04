@@ -2,7 +2,7 @@
 namespace Phi\Traits;
 
 
-use Planck\Helper\File;
+use Phi\FileSystem\File;
 
 Trait Introspectable
 {
@@ -10,6 +10,11 @@ Trait Introspectable
 
     private $introspectionReflector=null;
     private $parentClasses = null;
+
+    /**
+     * @var File
+     */
+    private $definitionFile;
 
 
     protected function initializeReflector() {
@@ -34,12 +39,17 @@ Trait Introspectable
     }
 
     public function getDefinitionFile() {
-        $this->initializeReflector();
-        return File::normalize($this->introspectionReflector->getFileName());
+        if(!$this->definitionFile) {
+            $this->initializeReflector();
+            $this->definitionFile = new File($this->introspectionReflector->getFileName());
+        }
+
+        return $this->definitionFile;
+
     }
 
     public function getDefinitionFolder() {
-        return File::normalize(dirname($this->getDefinitionFile()));
+        return $this->getDefinitionFile()->getDirectory();
     }
 
     public function getParentClasses()
