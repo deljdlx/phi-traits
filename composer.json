@@ -1,14 +1,17 @@
 {
-	"name": "elbiniou/phi-traits",
+	"name": "deljlx/phi-traits",
 	"description": "Usefull traits",
 
 	"repositories": [
-		{"type": "vcs", "url": "https://github.com/elbiniou/phi-core"}
+		{
+			"type": "vcs",
+			"url": "https://github.com/deljlx/phi-core"
+		}
 	],
 
 	"require":
 	{
-		"elbiniou/phi-core": "0.1.0"
+		"deljlx/phi-core": "0.1.0"
 	},
 
 	"autoload": {
