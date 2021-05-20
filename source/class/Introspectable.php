@@ -25,6 +25,26 @@ Trait Introspectable
     }
 
 
+    public function getPublicPropertiesValues($notNull = true)
+    {
+        $values = [];
+
+        $reflection = new \ReflectionClass($this);
+
+        foreach($reflection->getProperties() as $property) {
+            $name = $property->name;
+            $value = $this->$name;
+
+
+            if($property->isPublic() && ($value !== null || !$notNull)) {
+                $values[$name] = $value;
+            }
+        }
+
+        return $values;
+    }
+
+
     public function getNamespaceName()
     {
         return $this->introspectionReflector->getNamespaceName();
