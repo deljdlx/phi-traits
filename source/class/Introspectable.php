@@ -33,8 +33,13 @@ Trait Introspectable
 
         foreach($reflection->getProperties() as $property) {
             $name = $property->name;
-            $value = $this->$name;
 
+            if(!$property->isStatic()) {
+                $value = $this->$name;
+            }
+            else {
+                $value = static::$$name;
+            }
 
             if($property->isPublic() && ($value !== null || !$notNull)) {
                 $values[$name] = $value;
@@ -89,7 +94,7 @@ Trait Introspectable
 
     public function hasTrait($traitName)
     {
-        $traits = getTraits($this);
+        $traits = $this->getTraits($this);
         foreach ($traits as $trait) {
             if($traitName == $trait) {
                 return true;
