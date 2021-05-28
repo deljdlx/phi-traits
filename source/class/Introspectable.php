@@ -68,9 +68,7 @@ Trait Introspectable
             $this->initializeReflector();
             $this->definitionFile = new File($this->introspectionReflector->getFileName());
         }
-
         return $this->definitionFile;
-
     }
 
     public function getDefinitionFolder() {
